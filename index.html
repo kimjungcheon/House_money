@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>오늘의 럭키 가챠 - 하루 한 번 홈리빙 행운 뽑기</title>
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #f0faff 0%, #fff9f2 52%, #f4f8ff 100%);
+      --primary: #35c5f0;
+      --primary-dark: #09addb;
+      --accent: #ff7777;
+      --gold: #f59f00;
+      --text-main: #2f3438;
+      --text-sub: #656e75;
+      --card-bg: #ffffff;
+      --border-light: #eaedef;
+      --shadow: 0 12px 32px rgba(47, 52, 56, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Noto Sans KR", sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 16px;
+    }
+
+    .app-container {
+      width: 100%;
+      max-width: 440px;
+      background: var(--card-bg);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.9);
+    }
+
+    header {
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f7fcff;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .logo {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .logo-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .pill-btn {
+      background: #ffffff;
+      border: 1px solid #dadce0;
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-main);
+      cursor: pointer;
+      transition: transform 0.12s ease, background 0.12s ease;
+    }
+
+    .pill-btn:active {
+      transform: scale(0.96);
+    }
+
+    .main-stage {
+      padding: 24px 20px;
+      text-align: center;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: var(--text-sub);
+      margin-bottom: 18px;
+    }
+
+    .gacha-machine {
+      position: relative;
+      width: 240px;
+      height: 290px;
+      margin: 0 auto 22px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .dome {
+      width: 210px;
+      height: 185px;
+      background: radial-gradient(circle at 30% 25%, rgba(255,255,255,0.96), rgba(215,243,252,0.72));
+      border: 5px solid var(--primary);
+      border-radius: 105px 105px 24px 24px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 -10px 20px rgba(53, 197, 240, 0.18);
+    }
+
+    .capsule-deco {
+      position: absolute;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 3px solid rgba(255,255,255,0.9);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.07);
+    }
+
+    .cap-1 { background: linear-gradient(180deg, #35c5f0 50%, #fff 50%); bottom: 12px; left: 24px; transform: rotate(-20deg); }
+    .cap-2 { background: linear-gradient(180deg, #ffd43b 50%, #fff 50%); bottom: 10px; left: 78px; transform: rotate(15deg); }
+    .cap-3 { background: linear-gradient(180deg, #ff8787 50%, #fff 50%); bottom: 14px; right: 24px; transform: rotate(35deg); }
+    .cap-4 { background: linear-gradient(180deg, #63e6be 50%, #fff 50%); bottom: 48px; left: 48px; transform: rotate(45deg); }
+    .cap-5 { background: linear-gradient(180deg, #b197fc 50%, #fff 50%); bottom: 46px; right: 48px; transform: rotate(-35deg); }
+
+    .machine-base {
+      width: 224px;
+      height: 105px;
+      background: linear-gradient(180deg, #35c5f0 0%, #09addb 100%);
+      border-radius: 16px 16px 28px 28px;
+      margin-top: -6px;
+      position: relative;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 0 20px;
+      box-shadow: 0 8px 0 #008bb3;
+    }
+
+    .dial {
+      width: 54px;
+      height: 54px;
+      background: #fff;
+      border-radius: 50%;
+      border: 4px solid #e3f8ff;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .dial-bar {
+      width: 38px;
+      height: 10px;
+      background: #ffd43b;
+      border-radius: 5px;
+    }
+
+    .exit-slot {
+      width: 64px;
+      height: 58px;
+      background: #2f3438;
+      border-radius: 12px;
+      border: 3px solid #c5f0fc;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .dropped-capsule {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, #ffd43b 50%, #ffffff 50%);
+      border: 2px solid #fff;
+      transform: translateY(-60px);
+      opacity: 0;
+    }
+
+    .machine-shaking {
+      animation: shake 0.55s ease-in-out;
+    }
+
+    .dial-spinning {
+      transform: rotate(360deg);
+    }
+
+    .capsule-drop {
+      animation: dropIn 0.5s forwards ease-out;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0) rotate(0deg); }
+      20% { transform: translateX(-6px) rotate(-2deg); }
+      40% { transform: translateX(6px) rotate(2deg); }
+      60% { transform: translateX(-5px) rotate(-1.5deg); }
+      80% { transform: translateX(5px) rotate(1.5deg); }
+    }
+
+    @keyframes dropIn {
+      0% { transform: translateY(-60px) scale(0.7); opacity: 0; }
+      70% { transform: translateY(4px) scale(1.05); opacity: 1; }
+      100% { transform: translateY(0) scale(1); opacity: 1; }
+    }
+
+    .draw-btn {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: #fff;
+      font-size: 17px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(53, 197, 240, 0.35);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .draw-btn:active {
+      transform: translateY(2px);
+      box-shadow: 0 4px 10px rgba(53, 197, 240, 0.25);
+    }
+
+    .draw-btn:disabled {
+      background: #adb5bd;
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+
+    .result-section {
+      display: none;
+      animation: fadeUp 0.4s ease-out;
+      text-align: left;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fortune-card {
+      background: linear-gradient(180deg, #f0faff 0%, #ffffff 55%);
+      border: 2px solid #bae8f7;
+      border-radius: 22px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .badge-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .rarity-badge {
+      background: var(--primary-dark);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .rarity-badge.ssr {
+      background: linear-gradient(135deg, #f59f00, #ff6b6b);
+    }
+
+    .lucky-color {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-sub);
+    }
+
+    .fortune-title {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: var(--text-main);
+      line-height: 1.35;
+    }
+
+    .fortune-desc {
+      font-size: 14px;
+      line-height: 1.55;
+      color: #495057;
+    }
+
+    .product-card {
+      background: #f8f9fa;
+      border: 1px solid var(--border-light);
+      border-radius: 20px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .product-label {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .sync-tag {
+      background: #e3f8ff;
+      color: #008bb3;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+    }
+
+    .product-body {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .thumb-box {
+      width: 80px;
+      height: 80px;
+      border-radius: 14px;
+      background: #fff6eb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      flex-shrink: 0;
+      font-size: 36px;
+      border: 1px solid #e9ecef;
+    }
+
+    .thumb-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .product-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .deal-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    .today-deal-badge {
+      display: inline-block;
+      background: #ff7777;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 6px;
+    }
+
+    .product-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.35;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: 4px;
+    }
+
+    .price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .discount-rate {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+
+    .product-price {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .ohouse-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      text-decoration: none;
+      background: var(--primary);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 800;
+      padding: 13px;
+      border-radius: 14px;
+      transition: background 0.15s ease;
+    }
+
+    .ohouse-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    .action-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .sub-btn {
+      padding: 13px;
+      border-radius: 14px;
+      border: 1px solid #dadce0;
+      background: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+      cursor: pointer;
+    }
+
+    .sub-btn.primary-outline {
+      border-color: var(--primary);
+      color: var(--primary-dark);
+      background: #f0faff;
+    }
+
+    footer {
+      padding: 16px 20px 22px;
+      text-align: center;
+      font-size: 11px;
+      line-height: 1.5;
+      color: #828c94;
+      border-top: 1px solid var(--border-light);
+      background: #fafafa;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+      z-index: 100;
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 420px;
+      background: #fff;
+      border-radius: 24px;
+      padding: 20px;
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .modal-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: #828c94;
+      line-height: 1;
+    }
+
+    .dex-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .dex-item {
+      border: 1px solid var(--border-light);
+      border-radius: 16px;
+      padding: 12px;
+      text-align: center;
+      background: #f8f9fa;
+      cursor: pointer;
+    }
+
+    .dex-item.locked {
+      opacity: 0.55;
+      cursor: default;
+    }
+
+    .dex-thumb {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 8px;
+      border-radius: 12px;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      overflow: hidden;
+    }
+
+    .dex-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .dex-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .reset-btn {
+      width: 100%;
+      padding: 11px;
+      border-radius: 12px;
+      border: 1px solid #ffc9c9;
+      background: #fff5f5;
+      color: #e03131;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* Admin Curator Modal Styles */
+    .admin-guide {
+      background: #f0faff;
+      border: 1px solid #bae8f7;
+      border-radius: 14px;
+      padding: 12px;
+      font-size: 12px;
+      line-height: 1.5;
+      color: #2f3438;
+      margin-bottom: 14px;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: var(--text-main);
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 9px 11px;
+      border: 1px solid #dadce0;
+      border-radius: 10px;
+      font-size: 13px;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .admin-item-card {
+      border: 1px solid var(--border-light);
+      border-radius: 14px;
+      padding: 12px;
+      margin-bottom: 10px;
+      background: #fafafa;
+    }
+
+    .admin-item-head {
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: var(--primary-dark);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .admin-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .admin-btn-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .admin-save-btn {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .admin-export-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(47, 52, 56, 0.94);
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+      z-index: 200;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <header>
+      <div class="logo" id="secretLogoTrigger" title="오늘의 럭키 가챠">
+        <span class="logo-dot"></span>오늘의 럭키 가챠
+      </div>
+      <div class="header-actions">
+        <button class="pill-btn" id="soundToggleBtn" type="button">소리 ON</button>
+        <button class="pill-btn" id="openDexBtn" type="button">도감 (0/8)</button>
+      </div>
+    </header>
+
+    <div class="main-stage">
+      <div id="machineView">
+        <p class="subtitle">레버를 돌려 오늘의 운세와 홈리빙 행운템을 뽑아보세요!</p>
+        <div class="gacha-machine" id="gachaMachine">
+          <div class="dome">
+            <div class="capsule-deco cap-1"></div>
+            <div class="capsule-deco cap-2"></div>
+            <div class="capsule-deco cap-3"></div>
+            <div class="capsule-deco cap-4"></div>
+            <div class="capsule-deco cap-5"></div>
+          </div>
+          <div class="machine-base">
+            <div class="dial" id="gachaDial">
+              <div class="dial-bar"></div>
+            </div>
+            <div class="exit-slot">
+              <div class="dropped-capsule" id="droppedCapsule"></div>
+            </div>
+          </div>
+        </div>
+        <button class="draw-btn" id="drawBtn" type="button">오늘의 행운 뽑기</button>
+      </div>
+
+      <div class="result-section" id="resultView">
+        <div class="fortune-card">
+          <div class="badge-row">
+            <span class="rarity-badge" id="resRarity">SSR 대길</span>
+            <span class="lucky-color" id="resColor">행운의 컬러: 웜 옐로우</span>
+          </div>
+          <h2 class="fortune-title" id="resTitle">어두운 고민이 걷히고 영감이 떠오르는 날</h2>
+          <p class="fortune-desc" id="resDesc">막혀 있던 일의 실마리가 의외의 순간에 풀립니다.</p>
+        </div>
+
+        <div class="product-card">
+          <div class="product-label">
+            <span>오늘의 공간 무드 부스터 행운템</span>
+            <span class="sync-tag" id="liveSyncBadge">큐레이터 추천</span>
+          </div>
+          <div class="product-body">
+            <div class="thumb-box" id="resThumbBox"></div>
+            <div class="product-info">
+              <div class="deal-row">
+                <span class="today-deal-badge" id="resTodayDealBadge">오늘의딜</span>
+              </div>
+              <div class="product-name" id="resItemName">감성 무선 단스탠드 무드등</div>
+              <div class="price-row">
+                <span class="discount-rate" id="resDiscountRate">24%</span>
+                <span class="product-price" id="resItemPrice">18,900원</span>
+              </div>
+            </div>
+          </div>
+          <a class="ohouse-btn" id="resOhouseLink" href="#" target="_blank" rel="noopener noreferrer">
+            행운템 최저가·상세보기
+          </a>
+        </div>
+
+        <div class="action-row">
+          <button class="sub-btn" id="shareBtn" type="button">결과 복사하기</button>
+          <button class="sub-btn primary-outline" id="retryBtn" type="button">다시 뽑기</button>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      이 사이트는 오늘의집 큐레이터 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.
+    </footer>
+  </div>
+
+  <!-- 도감 모달 -->
+  <div class="modal-backdrop" id="dexModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <span class="modal-title" id="dexModalTitle">행운 도감 (0/8)</span>
+        <button class="close-btn" id="closeDexBtn" type="button">&times;</button>
+      </div>
+      <div class="dex-grid" id="dexGrid"></div>
+      <button class="reset-btn" id="resetDexBtn" type="button">도감 초기화</button>
+    </div>
+  </div>
+
+  <!-- 숨김 큐레이터 수익화 연동 설정 모달 -->
+  <div class="modal-backdrop" id="adminModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <span class="modal-title">내 계정 수익화 연동 설정</span>
+        <button class="close-btn" id="closeAdminBtn" type="button">&times;</button>
+      </div>
+      <div class="admin-guide">
+        1. 오늘의집 큐레이터 메뉴에서 각 상품의 단축 링크(<b>https://ozip.me/...</b>)를 복사해 아래에 입력하세요.<br/>
+        2. <b>설정 저장</b> 후 <b>products.json 다운로드</b>를 눌러 GitHub 저장소에 함께 올리면 모든 방문자에게 내 링크가 적용됩니다.
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="adminCuratorId">오늘의집 큐레이터 ID (선택사항)</label>
+        <input class="form-input" id="adminCuratorId" type="text" placeholder="예: my_curator_id" />
+      </div>
+      <div id="adminItemsContainer"></div>
+      <div class="admin-btn-stack">
+        <button class="admin-save-btn" id="saveAdminBtn" type="button">설정 저장 및 즉시 반영</button>
+        <div class="admin-export-row">
+          <button class="sub-btn" id="downloadJsonBtn" type="button">products.json 다운로드</button>
+          <button class="sub-btn" id="copyJsonBtn" type="button">products.json 복사</button>
+        </div>
+        <button class="reset-btn" id="resetAdminBtn" type="button">연동 설정 초기화</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">복사되었습니다!</div>
+
+  <script>
+    // =========================================================================
+    // [내 계정 직접 설정 영역]
+    // products.json 파일을 별도로 쓰지 않고 HTML 파일 하나만 업로드할 경우,
+    // 아래 customLinks 따옴표 안에 본인의 ozip.me 단축 링크를 직접 넣어도 됩니다.
+    // =========================================================================
+    const MY_OHOUSE_CONFIG = {
+      curatorId: "",
+      utmSource: "lucky_gacha",
+      productsJsonUrl: "./products.json",
+      customLinks: {
+        mood_lamp: "",
+        ceramic_mug: "",
+        hand_wash: "",
+        tea_set: "",
+        desk_mat: "",
+        diffuser: "",
+        mini_tray: "",
+        keychain: ""
+      }
+    };
+
+    const FORTUNE_DATA = [
+      {
+        id: "mood_lamp",
+        rarity: "SSR 대길",
+        color: "웜 옐로우",
+        emoji: "💡",
+        title: "어두운 고민이 걷히고 영감이 떠오르는 날",
+        desc: "막혀 있던 일의 실마리가 의외의 순간에 풀립니다. 저녁 시간 은은한 조명 아래서 내일을 계획해 보세요.",
+        item: "감성 인테리어 무선 단스탠드 무드등",
+        price: "18,900원",
+        discountRate: "24%",
+        isTodayDeal: true,
+        keyword: "무선 단스탠드 무드등",
+        ohouseUrl: "",
+        productImage: ""
+      },
+      {
+        id: "ceramic_mug",
+        rarity: "SR 길",
+        color: "크림 아이보리",
+        emoji: "☕",
+        title: "차분한 집중력으로 성과를 인정받는 날",
+        desc: "주변의 시선이 당신의 꼼꼼함에 모입니다. 따뜻한 홈카페 커피 한 잔의 여유가 행운을 키워줍니다.",
+        item: "프렌치 감성 도자기 홈카페 머그컵 세트",
+        price: "14,500원",
+        discountRate: "19%",
+        isTodayDeal: true,
+        keyword: "감성 도자기 머그컵",
+        ohouseUrl: "",
+        productImage: ""
+      },
+      {
+        id: "hand_wash",
+        rarity: "R 소길",
+        color: "소프트 핑크",
+        emoji: "🧼",
+        title: "기분 좋은 대화와 반가운 연락이 오는 날",
+        desc: "오랜만에 반가운 소식을 듣거나 따뜻한 배려를 받게 됩니다. 은은한 잔향이 좋은 인연을 부릅니다.",
+        item: "퍼퓸 우디플로럴 보습 핸드워시",
+        price: "12,900원",
+        discountRate: "15%",
+        isTodayDeal: false,
+        keyword: "퍼퓸 핸드워시",
+        ohouseUrl: "",
+        productImage: ""
+      },
+      {
+        id: "tea_set",
+        rarity: "SR 길",
+        color: "민트 그린",
+        emoji: "🍵",
+        title: "마음의 여유가 금전운을 끌어당기는 날",
+        desc: "조급함을 내려놓을수록 유리한 조건이 찾아옵니다. 향긋한 티타임으로 컨디션을 끌어올려 보세요.",
+        item: "프리미엄 블렌딩 허브 티백 기프트박스",
+        price: "19,800원",
+        discountRate: "21%",
+        isTodayDeal: true,
+        keyword: "허브 티백 선물세트",
+        ohouseUrl: "",
+        productImage: ""
+      },
+      {
+        id: "desk_mat",
+        rarity: "SSR 대길",
+        color: "클래식 브라운",
+        emoji: "🖥️",
+        title: "일과 재물운이 동시에 상승하는 황금 타이밍",
+        desc: "데스크 위의 작은 정리만으로도 큰 행운의 흐름이 열립니다. 중요한 기획을 시작하기 최적의 날입니다.",
+        item: "양면 비건레더 방수 대형 데스크매트",
+        price: "15,900원",
+        discountRate: "28%",
+        isTodayDeal: true,
+        keyword: "가죽 데스크매트",
+        ohouseUrl: "",
+        productImage: ""
+      },
+      {
+        id: "diffuser",
+        rarity: "SR 길",
+        color: "라벤더 퍼플",
+        emoji: "🌿",
+        title: "공간의 기운이 바뀌며 좋은 소식이 들리는 날",
+        desc: "기분 전환이 곧 행운으로 이어집니다. 호텔 로비 같은 은은한 향기로 집안 공기를 바꿔보세요.",
+        item: "부티크 호텔 시그니처 실내 디퓨저",
+        price: "16,900원",
+        discountRate: "22%",
+        isTodayDeal: true,
+        keyword: "호텔 디퓨저",
+        ohouseUrl: "",
+        productImage: ""
+      },
+      {
+        id: "mini_tray",
+        rarity: "R 소길",
+        color: "내추럴 우드",
+        emoji: "🪵",
+        title: "소소한 정리가 뜻밖의 행운을 부르는 날",
+        desc: "자주 쓰는 물건에 제자리를 만들어 주면 하루의 흐름이 매끄러워집니다. 작은 소품 하나로 분위기를 바꿔보세요.",
+        item: "원목 & 스테인리스 오브제 악세사리 트레이",
+        price: "13,500원",
+        discountRate: "17%",
+        isTodayDeal: false,
+        keyword: "원목 오브제 트레이",
+        ohouseUrl: "",
+        productImage: ""
+      },
+      {
+        id: "keychain",
+        rarity: "SSR 대길",
+        color: "골드 실버",
+        emoji: "🍀",
+        title: "작은 부적처럼 행운이 하루 종일 따라다니는 날",
+        desc: "이동하는 곳마다 타이밍이 딱딱 맞아떨어집니다. 가방이나 차키에 작은 포인트를 더해 행운을 고정해 보세요.",
+        item: "네잎클로버 행운 황동 메탈 키링",
+        price: "11,900원",
+        discountRate: "20%",
+        isTodayDeal: false,
+        keyword: "네잎클로버 키링",
+        ohouseUrl: "",
+        productImage: ""
+      }
+    ];
+
+    const DEX_STORAGE_KEY = "lucky_gacha_ohouse_dex_v1";
+    const ADMIN_STORAGE_KEY = "lucky_gacha_ohouse_admin_v1";
+
+    let unlockedIds = JSON.parse(localStorage.getItem(DEX_STORAGE_KEY) || "[]");
+    let adminOverrides = JSON.parse(localStorage.getItem(ADMIN_STORAGE_KEY) || "null");
+    let liveJsonItems = {};
+    let soundEnabled = true;
+    let currentFortune = null;
+    let resetDexStep = false;
+
+    const machineView = document.getElementById("machineView");
+    const resultView = document.getElementById("resultView");
+    const gachaMachine = document.getElementById("gachaMachine");
+    const gachaDial = document.getElementById("gachaDial");
+    const droppedCapsule = document.getElementById("droppedCapsule");
+    const drawBtn = document.getElementById("drawBtn");
+    const openDexBtn = document.getElementById("openDexBtn");
+    const soundToggleBtn = document.getElementById("soundToggleBtn");
+
+    function playTone(freq, duration, type = "sine", delay = 0) {
+      if (!soundEnabled) return;
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        const ctx = new AudioCtx();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime + delay);
+        gain.gain.setValueAtTime(0.11, ctx.currentTime + delay);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + delay + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + delay);
+        osc.stop(ctx.currentTime + delay + duration);
+      } catch (e) {}
+    }
+
+    function playGachaSound() {
+      playTone(330, 0.08, "triangle", 0);
+      playTone(440, 0.08, "triangle", 0.12);
+      playTone(550, 0.08, "triangle", 0.24);
+      playTone(660, 0.12, "sine", 0.45);
+      playTone(880, 0.25, "sine", 0.58);
+    }
+
+    function getActiveCuratorId() {
+      if (adminOverrides && adminOverrides.curatorId) {
+        return adminOverrides.curatorId.trim();
+      }
+      return (MY_OHOUSE_CONFIG.curatorId || "").trim();
+    }
+
+    // 4단계 우선순위 수익화 URL 생성기
+    function buildMonetizedUrl(fortune) {
+      const adminItem = adminOverrides && adminOverrides.items && adminOverrides.items[fortune.id];
+      const liveItem = liveJsonItems && liveJsonItems[fortune.id];
+      const configUrl = MY_OHOUSE_CONFIG.customLinks && MY_OHOUSE_CONFIG.customLinks[fortune.id];
+
+      let rawUrl =
+        (adminItem && adminItem.ohouseUrl && adminItem.ohouseUrl.trim()) ||
+        (liveItem && liveItem.ohouseUrl && liveItem.ohouseUrl.trim()) ||
+        (configUrl && configUrl.trim()) ||
+        (fortune.ohouseUrl && fortune.ohouseUrl.trim()) ||
+        "https://ohou.se/productions/feed?query=" + encodeURIComponent(fortune.keyword);
+
+      // ozip.me 큐레이터 단축 링크는 파라미터 변형 없이 그대로 반환
+      if (rawUrl.includes("ozip.me")) {
+        return rawUrl;
+      }
+
+      try {
+        const urlObj = new URL(rawUrl);
+        const curatorId = getActiveCuratorId();
+        if (urlObj.hostname.includes("ohou.se")) {
+          if (curatorId && !urlObj.searchParams.has("curator_id")) {
+            urlObj.searchParams.set("curator_id", curatorId);
+          }
+          if (!urlObj.searchParams.has("utm_source")) {
+            urlObj.searchParams.set("utm_source", MY_OHOUSE_CONFIG.utmSource || "lucky_gacha");
+            urlObj.searchParams.set("utm_medium", "curator_gacha");
+            urlObj.searchParams.set("utm_campaign", fortune.id);
+          }
+        }
+        return urlObj.toString();
+      } catch (e) {
+        return rawUrl;
+      }
+    }
+
+    function getResolvedFortune(fortune) {
+      const liveItem = liveJsonItems[fortune.id] || {};
+      const adminItem = (adminOverrides && adminOverrides.items && adminOverrides.items[fortune.id]) || {};
+
+      return {
+        ...fortune,
+        item: adminItem.productName || liveItem.productName || fortune.item,
+        price: adminItem.productPrice || liveItem.productPrice || fortune.price,
+        discountRate: adminItem.discountRate || liveItem.discountRate || fortune.discountRate,
+        isTodayDeal: typeof adminItem.isTodayDeal === "boolean"
+          ? adminItem.isTodayDeal
+          : (typeof liveItem.isTodayDeal === "boolean" ? liveItem.isTodayDeal : fortune.isTodayDeal),
+        productImage: adminItem.productImage || liveItem.productImage || fortune.productImage,
+        finalUrl: buildMonetizedUrl(fortune)
+      };
+    }
+
+    async function loadOhouseProducts() {
+      try {
+        const res = await fetch(MY_OHOUSE_CONFIG.productsJsonUrl + "?t=" + Date.now());
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data && data.items) {
+          liveJsonItems = data.items;
+          const hasAnyLink = Object.values(liveJsonItems).some((v) => v && v.ohouseUrl);
+          if (hasAnyLink) {
+            document.getElementById("liveSyncBadge").textContent = "큐레이터 엄선템";
+          }
+        }
+      } catch (err) {
+        console.warn("기본 홈리빙 추천 데이터를 사용합니다:", err);
+      }
+    }
+
+    function renderThumb(container, item) {
+      container.innerHTML = "";
+      if (item.productImage) {
+        const img = document.createElement("img");
+        img.src = item.productImage;
+        img.alt = item.item;
+        img.onerror = () => {
+          container.textContent = item.emoji;
+        };
+        container.appendChild(img);
+      } else {
+        container.textContent = item.emoji;
+      }
+    }
+
+    function showResult(baseFortune) {
+      const resolved = getResolvedFortune(baseFortune);
+      currentFortune = resolved;
+
+      const rarityEl = document.getElementById("resRarity");
+      rarityEl.textContent = resolved.rarity;
+      rarityEl.className = "rarity-badge" + (resolved.rarity.includes("SSR") ? " ssr" : "");
+
+      document.getElementById("resColor").textContent = "행운의 컬러: " + resolved.color;
+      document.getElementById("resTitle").textContent = resolved.title;
+      document.getElementById("resDesc").textContent = resolved.desc;
+      document.getElementById("resItemName").textContent = resolved.item;
+      document.getElementById("resItemPrice").textContent = resolved.price;
+
+      const discountEl = document.getElementById("resDiscountRate");
+      if (resolved.discountRate) {
+        discountEl.textContent = resolved.discountRate;
+        discountEl.style.display = "inline";
+      } else {
+        discountEl.style.display = "none";
+      }
+
+      const dealBadge = document.getElementById("resTodayDealBadge");
+      dealBadge.style.display = resolved.isTodayDeal ? "inline-block" : "none";
+
+      document.getElementById("resOhouseLink").href = resolved.finalUrl;
+      renderThumb(document.getElementById("resThumbBox"), resolved);
+
+      if (!unlockedIds.includes(resolved.id)) {
+        unlockedIds.push(resolved.id);
+        localStorage.setItem(DEX_STORAGE_KEY, JSON.stringify(unlockedIds));
+        updateDexCount();
+      }
+
+      machineView.style.display = "none";
+      resultView.style.display = "block";
+    }
+
+    function updateDexCount() {
+      const countText = "도감 (" + unlockedIds.length + "/" + FORTUNE_DATA.length + ")";
+      openDexBtn.textContent = countText;
+      document.getElementById("dexModalTitle").textContent = "행운 " + countText;
+    }
+
+    function renderDexGrid() {
+      const grid = document.getElementById("dexGrid");
+      grid.innerHTML = "";
+      FORTUNE_DATA.forEach((baseItem) => {
+        const item = getResolvedFortune(baseItem);
+        const unlocked = unlockedIds.includes(item.id);
+        const card = document.createElement("div");
+        card.className = "dex-item" + (unlocked ? "" : " locked");
+
+        const thumb = document.createElement("div");
+        thumb.className = "dex-thumb";
+        if (unlocked) {
+          renderThumb(thumb, item);
+        } else {
+          thumb.textContent = "❓";
+        }
+
+        const name = document.createElement("div");
+        name.className = "dex-name";
+        name.textContent = unlocked ? item.item : "미발견 행운템";
+
+        card.appendChild(thumb);
+        card.appendChild(name);
+
+        if (unlocked) {
+          card.addEventListener("click", () => {
+            document.getElementById("dexModal").style.display = "none";
+            showResult(baseItem);
+          });
+        }
+        grid.appendChild(card);
+      });
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById("toast");
+      toast.textContent = msg;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2200);
+    }
+
+    // =========================================================================
+    // 숨김 큐레이터 관리자 모달 로직
+    // =========================================================================
+    function openAdminModal() {
+      document.getElementById("adminCuratorId").value = getActiveCuratorId();
+      const container = document.getElementById("adminItemsContainer");
+      container.innerHTML = "";
+
+      FORTUNE_DATA.forEach((baseItem) => {
+        const resolved = getResolvedFortune(baseItem);
+        const saved = (adminOverrides && adminOverrides.items && adminOverrides.items[baseItem.id]) ||
+                      liveJsonItems[baseItem.id] || {};
+        const currentLink = saved.ohouseUrl || (MY_OHOUSE_CONFIG.customLinks[baseItem.id] || "");
+
+        const card = document.createElement("div");
+        card.className = "admin-item-card";
+        card.innerHTML = `
+          <div class="admin-item-head">
+            <span>${baseItem.emoji} ${baseItem.keyword}</span>
+            <span>(${baseItem.id})</span>
+          </div>
+          <input class="form-input" data-field="ohouseUrl" data-id="${baseItem.id}" type="url"
+            placeholder="오늘의집 큐레이터 링크 (https://ozip.me/...)" value="${currentLink}" />
+          <div class="admin-grid-2">
+            <input class="form-input" data-field="productName" data-id="${baseItem.id}" type="text"
+              placeholder="상품명" value="${resolved.item}" />
+            <input class="form-input" data-field="productPrice" data-id="${baseItem.id}" type="text"
+              placeholder="가격 (예: 18,900원)" value="${resolved.price}" />
+          </div>
+          <div class="admin-grid-2">
+            <input class="form-input" data-field="discountRate" data-id="${baseItem.id}" type="text"
+              placeholder="할인율 (예: 24%)" value="${resolved.discountRate || ""}" />
+            <input class="form-input" data-field="productImage" data-id="${baseItem.id}" type="url"
+              placeholder="썸네일 이미지 URL (선택)" value="${resolved.productImage || ""}" />
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      document.getElementById("adminModal").style.display = "flex";
+    }
+
+    function collectAdminPayload() {
+      const curatorId = document.getElementById("adminCuratorId").value.trim();
+      const items = {};
+      FORTUNE_DATA.forEach((baseItem) => {
+        const getVal = (field) => {
+          const el = document.querySelector(`[data-id="${baseItem.id}"][data-field="${field}"]`);
+          return el ? el.value.trim() : "";
+        };
+        items[baseItem.id] = {
+          productName: getVal("productName") || baseItem.item,
+          productPrice: getVal("productPrice") || baseItem.price,
+          discountRate: getVal("discountRate"),
+          isTodayDeal: baseItem.isTodayDeal,
+          productImage: getVal("productImage"),
+          ohouseUrl: getVal("ohouseUrl")
+        };
+      });
+      return {
+        updatedAt: new Date().toISOString(),
+        curatorId,
+        items
+      };
+    }
+
+    document.getElementById("saveAdminBtn").addEventListener("click", () => {
+      adminOverrides = collectAdminPayload();
+      localStorage.setItem(ADMIN_STORAGE_KEY, JSON.stringify(adminOverrides));
+      document.getElementById("liveSyncBadge").textContent = "내 큐레이터 연동됨";
+      document.getElementById("adminModal").style.display = "none";
+      showToast("내 계정 수익화 링크가 저장되었습니다!");
+    });
+
+    document.getElementById("downloadJsonBtn").addEventListener("click", () => {
+      const payload = collectAdminPayload();
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "products.json";
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast("products.json 파일이 다운로드되었습니다!");
+    });
+
+    document.getElementById("copyJsonBtn").addEventListener("click", async () => {
+      const payload = collectAdminPayload();
+      try {
+        await navigator.clipboard.writeText(JSON.stringify(payload, null, 2));
+        showToast("products.json 내용이 클립보드에 복사되었습니다!");
+      } catch (e) {
+        showToast("복사에 실패했습니다.");
+      }
+    });
+
+    document.getElementById("resetAdminBtn").addEventListener("click", () => {
+      adminOverrides = null;
+      localStorage.removeItem(ADMIN_STORAGE_KEY);
+      document.getElementById("adminModal").style.display = "none";
+      showToast("연동 설정이 초기화되었습니다.");
+    });
+
+    document.getElementById("closeAdminBtn").addEventListener("click", () => {
+      document.getElementById("adminModal").style.display = "none";
+    });
+
+    // 로고 3회 연속 탭으로 관리자 창 열기
+    let logoTapCount = 0;
+    let logoTapTimer = null;
+    document.getElementById("secretLogoTrigger").addEventListener("click", () => {
+      logoTapCount++;
+      clearTimeout(logoTapTimer);
+      if (logoTapCount >= 3) {
+        logoTapCount = 0;
+        openAdminModal();
+        return;
+      }
+      logoTapTimer = setTimeout(() => {
+        logoTapCount = 0;
+      }, 700);
+    });
+
+    // 단축키 Ctrl+Shift+O 또는 Cmd+Shift+O
+    document.addEventListener("keydown", (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === "o") {
+        e.preventDefault();
+        openAdminModal();
+      }
+    });
+
+    // =========================================================================
+    // 기본 가챠 뽑기 및 도감 이벤트
+    // =========================================================================
+    drawBtn.addEventListener("click", () => {
+      drawBtn.disabled = true;
+      playGachaSound();
+      gachaMachine.classList.add("machine-shaking");
+      gachaDial.classList.add("dial-spinning");
+
+      setTimeout(() => {
+        droppedCapsule.classList.add("capsule-drop");
+      }, 350);
+
+      setTimeout(() => {
+        gachaMachine.classList.remove("machine-shaking");
+        gachaDial.classList.remove("dial-spinning");
+        droppedCapsule.classList.remove("capsule-drop");
+        drawBtn.disabled = false;
+
+        const randomIndex = Math.floor(Math.random() * FORTUNE_DATA.length);
+        showResult(FORTUNE_DATA[randomIndex]);
+      }, 950);
+    });
+
+    document.getElementById("retryBtn").addEventListener("click", () => {
+      resultView.style.display = "none";
+      machineView.style.display = "block";
+    });
+
+    document.getElementById("shareBtn").addEventListener("click", async () => {
+      if (!currentFortune) return;
+      const shareText =
+        "[오늘의 럭키 가챠] " + currentFortune.rarity + "\n" +
+        currentFortune.title + "\n" +
+        "오늘의 홈리빙 행운템: " + currentFortune.item + "\n" +
+        "나도 뽑아보기: " + window.location.href;
+      try {
+        await navigator.clipboard.writeText(shareText);
+        showToast("결과가 복사되었습니다. 카톡이나 블로그에 붙여넣어 보세요!");
+      } catch (e) {
+        showToast("복사에 실패했습니다.");
+      }
+    });
+
+    soundToggleBtn.addEventListener("click", () => {
+      soundEnabled = !soundEnabled;
+      soundToggleBtn.textContent = soundEnabled ? "소리 ON" : "소리 OFF";
+    });
+
+    openDexBtn.addEventListener("click", () => {
+      resetDexStep = false;
+      document.getElementById("resetDexBtn").textContent = "도감 초기화";
+      renderDexGrid();
+      document.getElementById("dexModal").style.display = "flex";
+    });
+
+    document.getElementById("closeDexBtn").addEventListener("click", () => {
+      document.getElementById("dexModal").style.display = "none";
+    });
+
+    document.getElementById("resetDexBtn").addEventListener("click", (e) => {
+      if (!resetDexStep) {
+        resetDexStep = true;
+        e.target.textContent = "정말 초기화할까요? (한 번 더 클릭)";
+        return;
+      }
+      unlockedIds = [];
+      localStorage.removeItem(DEX_STORAGE_KEY);
+      updateDexCount();
+      renderDexGrid();
+      resetDexStep = false;
+      e.target.textContent = "도감 초기화";
+      showToast("도감이 초기화되었습니다.");
+    });
+
+    // 초기화 실행
+    updateDexCount();
+    loadOhouseProducts().then(() => {
+      if (new URLSearchParams(window.location.search).get("admin") === "1") {
+        openAdminModal();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+{
+  "updatedAt": "2026-11-23T22:56:00+09:00",
+  "curatorId": "",
+  "items": {
+    "mood_lamp": {
+      "productName": "감성 인테리어 무선 단스탠드 무드등",
+      "productPrice": "18,900원",
+      "discountRate": "24%",
+      "isTodayDeal": true,
+      "productImage": "",
+      "ohouseUrl": ""
+    },
+    "ceramic_mug": {
+      "productName": "프렌치 감성 도자기 홈카페 머그컵 세트",
+      "productPrice": "14,500원",
+      "discountRate": "19%",
+      "isTodayDeal": true,
+      "productImage": "",
+      "ohouseUrl": ""
+    },
+    "hand_wash": {
+      "productName": "퍼퓸 우디플로럴 보습 핸드워시",
+      "productPrice": "12,900원",
+      "discountRate": "15%",
+      "isTodayDeal": false,
+      "productImage": "",
+      "ohouseUrl": ""
+    },
+    "tea_set": {
+      "productName": "프리미엄 블렌딩 허브 티백 기프트박스",
+      "productPrice": "19,800원",
+      "discountRate": "21%",
+      "isTodayDeal": true,
+      "productImage": "",
+      "ohouseUrl": ""
+    },
+    "desk_mat": {
+      "productName": "양면 비건레더 방수 대형 데스크매트",
+      "productPrice": "15,900원",
+      "discountRate": "28%",
+      "isTodayDeal": true,
+      "productImage": "",
+      "ohouseUrl": ""
+    },
+    "diffuser": {
+      "productName": "부티크 호텔 시그니처 실내 디퓨저",
+      "productPrice": "16,900원",
+      "discountRate": "22%",
+      "isTodayDeal": true,
+      "productImage": "",
+      "ohouseUrl": ""
+    },
+    "mini_tray": {
+      "productName": "원목 & 스테인리스 오브제 악세사리 트레이",
+      "productPrice": "13,500원",
+      "discountRate": "17%",
+      "isTodayDeal": false,
+      "productImage": "",
+      "ohouseUrl": ""
+    },
+    "keychain": {
+      "productName": "네잎클로버 행운 황동 메탈 키링",
+      "productPrice": "11,900원",
+      "discountRate": "20%",
+      "isTodayDeal": false,
+      "productImage": "",
+      "ohouseUrl": ""
+    }
+  }
+}
