@@ -568,7 +568,6 @@
       cursor: pointer;
     }
 
-    /* Admin Curator Modal Styles */
     .admin-guide {
       background: #f0faff;
       border: 1px solid #bae8f7;
@@ -716,16 +715,16 @@
         <div class="fortune-card">
           <div class="badge-row">
             <span class="rarity-badge" id="resRarity">SSR 대길</span>
-            <span class="lucky-color" id="resColor">행운의 컬러: 웜 옐로우</span>
+            <span class="lucky-color" id="resColor">행운의 컬러: 내추럴 우드 & 화이트</span>
           </div>
-          <h2 class="fortune-title" id="resTitle">어두운 고민이 걷히고 영감이 떠오르는 날</h2>
-          <p class="fortune-desc" id="resDesc">막혀 있던 일의 실마리가 의외의 순간에 풀립니다.</p>
+          <h2 class="fortune-title" id="resTitle">어수선한 일상이 정돈되고 복이 차곡차곡 쌓이는 날</h2>
+          <p class="fortune-desc" id="resDesc">공간에 여유가 생기면 새로운 행운과 재물운이 자연스럽게 들어옵니다.</p>
         </div>
 
         <div class="product-card">
           <div class="product-label">
             <span>오늘의 공간 무드 부스터 행운템</span>
-            <span class="sync-tag" id="liveSyncBadge">큐레이터 추천</span>
+            <span class="sync-tag" id="liveSyncBadge">큐레이터 엄선템</span>
           </div>
           <div class="product-body">
             <div class="thumb-box" id="resThumbBox"></div>
@@ -733,10 +732,10 @@
               <div class="deal-row">
                 <span class="today-deal-badge" id="resTodayDealBadge">오늘의딜</span>
               </div>
-              <div class="product-name" id="resItemName">감성 무선 단스탠드 무드등</div>
+              <div class="product-name" id="resItemName">[가구의정석] 토리 와이드 3단/5단 서랍장 수납장</div>
               <div class="price-row">
-                <span class="discount-rate" id="resDiscountRate">24%</span>
-                <span class="product-price" id="resItemPrice">18,900원</span>
+                <span class="discount-rate" id="resDiscountRate">37%</span>
+                <span class="product-price" id="resItemPrice">99,000원</span>
               </div>
             </div>
           </div>
@@ -799,152 +798,147 @@
   <div class="toast" id="toast">복사되었습니다!</div>
 
   <script>
-    // =========================================================================
-    // [내 계정 직접 설정 영역]
-    // products.json 파일을 별도로 쓰지 않고 HTML 파일 하나만 업로드할 경우,
-    // 아래 customLinks 따옴표 안에 본인의 ozip.me 단축 링크를 직접 넣어도 됩니다.
-    // =========================================================================
     const MY_OHOUSE_CONFIG = {
       curatorId: "",
       utmSource: "lucky_gacha",
       productsJsonUrl: "./products.json",
       customLinks: {
-        mood_lamp: "",
-        ceramic_mug: "",
-        hand_wash: "",
-        tea_set: "",
-        desk_mat: "",
-        diffuser: "",
-        mini_tray: "",
-        keychain: ""
+        wide_drawer: "https://ozip.me/fA54lYN?af",
+        comforter_set: "https://ozip.me/Cvln3nX?af",
+        magnet_frame: "https://ozip.me/WkHmL22?af",
+        christmas_tree: "https://ozip.me/XsMmyuo?af",
+        mirror_vanity: "https://ozip.me/JhuHQwD?af",
+        baby_wipes: "https://ozip.me/GUN16db?af",
+        slim_vanity: "https://ozip.me/L5DoQDB?af",
+        baby_bookshelf: "https://ozip.me/OOAziq3?af"
       }
     };
 
     const FORTUNE_DATA = [
       {
-        id: "mood_lamp",
+        id: "wide_drawer",
         rarity: "SSR 대길",
-        color: "웜 옐로우",
-        emoji: "💡",
-        title: "어두운 고민이 걷히고 영감이 떠오르는 날",
-        desc: "막혀 있던 일의 실마리가 의외의 순간에 풀립니다. 저녁 시간 은은한 조명 아래서 내일을 계획해 보세요.",
-        item: "감성 인테리어 무선 단스탠드 무드등",
-        price: "18,900원",
+        color: "내추럴 우드 & 화이트",
+        emoji: "🗄️",
+        title: "어수선한 일상이 정돈되고 복이 차곡차곡 쌓이는 날",
+        desc: "공간에 여유가 생기면 새로운 행운과 재물운이 자연스럽게 들어옵니다. 넉넉한 수납으로 집안 분위기를 깔끔하게 정돈해 보세요.",
+        item: "[가구의정석] 토리 와이드 3단/5단 서랍장 수납장",
+        price: "99,000원",
+        discountRate: "37%",
+        isTodayDeal: true,
+        keyword: "토리 와이드 서랍장",
+        ohouseUrl: "https://ozip.me/fA54lYN?af",
+        productImage: ""
+      },
+      {
+        id: "comforter_set",
+        rarity: "SSR 대길",
+        color: "크림 카스테라",
+        emoji: "🛏️",
+        title: "포근한 휴식이 큰 행운과 에너지를 불러오는 날",
+        desc: "숙면에서 비롯된 맑은 컨디션이 오늘의 중요한 기회를 잡아줍니다. 따뜻한 잠자리로 몸과 마음을 포근하게 감싸보세요.",
+        item: "[헬로우슬립] 카스테라 워싱 사계절/한파용 차렵이불세트",
+        price: "39,900원",
+        discountRate: "50%",
+        isTodayDeal: true,
+        keyword: "카스테라 차렵이불세트",
+        ohouseUrl: "https://ozip.me/Cvln3nX?af",
+        productImage: ""
+      },
+      {
+        id: "magnet_frame",
+        rarity: "SR 길",
+        color: "모던 실버",
+        emoji: "🖼️",
+        title: "기분 좋은 추억과 영감이 새로운 인연을 부르는 날",
+        desc: "좋아하는 사진과 취향을 가까이 두면 긍정적인 기운이 커집니다. 나만의 감각이 담긴 공간 포인트로 영감을 채워보세요.",
+        item: "[아트밀] 취향수집 아카이브 스텐 자석 액자 6종",
+        price: "34,900원",
+        discountRate: "32%",
+        isTodayDeal: true,
+        keyword: "스텐 자석 액자",
+        ohouseUrl: "https://ozip.me/WkHmL22?af",
+        productImage: ""
+      },
+      {
+        id: "christmas_tree",
+        rarity: "SSR 대길",
+        color: "윈터 골드 & 그린",
+        emoji: "🎄",
+        title: "반짝이는 설렘과 기분 좋은 선물이 찾아오는 날",
+        desc: "예상치 못한 반가운 소식과 따뜻한 축하가 이어집니다. 공간에 화사한 불빛을 더해 연말의 설렘과 행운을 맞이해 보세요.",
+        item: "[마음담은집] 120~210cm 반자동 PE 크리스마스 트리 풀세트",
+        price: "134,000원",
         discountRate: "24%",
         isTodayDeal: true,
-        keyword: "무선 단스탠드 무드등",
-        ohouseUrl: "",
+        keyword: "반자동 크리스마스 트리 풀세트",
+        ohouseUrl: "https://ozip.me/XsMmyuo?af",
         productImage: ""
       },
       {
-        id: "ceramic_mug",
+        id: "mirror_vanity",
         rarity: "SR 길",
-        color: "크림 아이보리",
-        emoji: "☕",
-        title: "차분한 집중력으로 성과를 인정받는 날",
-        desc: "주변의 시선이 당신의 꼼꼼함에 모입니다. 따뜻한 홈카페 커피 한 잔의 여유가 행운을 키워줍니다.",
-        item: "프렌치 감성 도자기 홈카페 머그컵 세트",
-        price: "14,500원",
-        discountRate: "19%",
+        color: "퓨어 화이트",
+        emoji: "🪞",
+        title: "자신감 넘치는 첫인상이 좋은 기회를 끌어당기는 날",
+        desc: "외출 전 단정한 스타일링이 오늘의 대인운과 성취운을 높여줍니다. 틈새 공간까지 알차게 살려주는 스마트한 뷰티 존을 만들어 보세요.",
+        item: "[레이디가구] 플로우 E0 틈새 수납 미니 전신거울 화장대",
+        price: "109,900원",
+        discountRate: "55%",
         isTodayDeal: true,
-        keyword: "감성 도자기 머그컵",
-        ohouseUrl: "",
+        keyword: "미니 전신거울 화장대",
+        ohouseUrl: "https://ozip.me/JhuHQwD?af",
         productImage: ""
       },
       {
-        id: "hand_wash",
+        id: "baby_wipes",
         rarity: "R 소길",
-        color: "소프트 핑크",
-        emoji: "🧼",
-        title: "기분 좋은 대화와 반가운 연락이 오는 날",
-        desc: "오랜만에 반가운 소식을 듣거나 따뜻한 배려를 받게 됩니다. 은은한 잔향이 좋은 인연을 부릅니다.",
-        item: "퍼퓸 우디플로럴 보습 핸드워시",
-        price: "12,900원",
-        discountRate: "15%",
-        isTodayDeal: false,
-        keyword: "퍼퓸 핸드워시",
-        ohouseUrl: "",
+        color: "골드 블랙",
+        emoji: "🧻",
+        title: "일상의 작은 준비성이 큰 여유로 돌아오는 날",
+        desc: "미리 챙겨둔 꼼꼼함 덕분에 돌발 상황도 매끄럽게 해결됩니다. 집안 곳곳을 언제든 쾌적하게 유지할 수 있는 생활 필수템을 채워두세요.",
+        item: "[베베앙] 두꺼운 82g 골드 블랙 캡형 아기물티슈 70매 20팩",
+        price: "41,800원",
+        discountRate: "47%",
+        isTodayDeal: true,
+        keyword: "베베앙 골드 블랙 물티슈",
+        ohouseUrl: "https://ozip.me/GUN16db?af",
         productImage: ""
       },
       {
-        id: "tea_set",
+        id: "slim_vanity",
         rarity: "SR 길",
-        color: "민트 그린",
-        emoji: "🍵",
-        title: "마음의 여유가 금전운을 끌어당기는 날",
-        desc: "조급함을 내려놓을수록 유리한 조건이 찾아옵니다. 향긋한 티타임으로 컨디션을 끌어올려 보세요.",
-        item: "프리미엄 블렌딩 허브 티백 기프트박스",
-        price: "19,800원",
-        discountRate: "21%",
+        color: "소프트 아이보리",
+        emoji: "✨",
+        title: "숨은 공간에서 뜻밖의 행운과 아이디어를 발견하는 날",
+        desc: "평소 지나쳤던 자투리 시간과 공간 속에 알찬 기회가 숨어 있습니다. 거울과 수납을 한 번에 해결해 하루의 동선을 가볍게 만들어 보세요.",
+        item: "[레이디가구] 플로우 틈새 수납 미니 전신거울 화장대 3type",
+        price: "109,900원",
+        discountRate: "55%",
         isTodayDeal: true,
-        keyword: "허브 티백 선물세트",
-        ohouseUrl: "",
+        keyword: "틈새 수납 전신거울 화장대",
+        ohouseUrl: "https://ozip.me/L5DoQDB?af",
         productImage: ""
       },
       {
-        id: "desk_mat",
+        id: "baby_bookshelf",
         rarity: "SSR 대길",
-        color: "클래식 브라운",
-        emoji: "🖥️",
-        title: "일과 재물운이 동시에 상승하는 황금 타이밍",
-        desc: "데스크 위의 작은 정리만으로도 큰 행운의 흐름이 열립니다. 중요한 기획을 시작하기 최적의 날입니다.",
-        item: "양면 비건레더 방수 대형 데스크매트",
-        price: "15,900원",
-        discountRate: "28%",
+        color: "웜 베이지",
+        emoji: "📚",
+        title: "배움과 성장의 기운이 집안 가득 피어나는 날",
+        desc: "새로운 지식을 접하거나 아이와 함께하는 시간 속에서 큰 보람과 행운을 얻습니다. 한눈에 들어오는 깔끔한 전면 수납으로 즐거운 독서 습관을 만들어 보세요.",
+        item: "[쉬어] 로코 전면 아기 책장 교구장 1/2/3단",
+        price: "99,000원",
+        discountRate: "38%",
         isTodayDeal: true,
-        keyword: "가죽 데스크매트",
-        ohouseUrl: "",
-        productImage: ""
-      },
-      {
-        id: "diffuser",
-        rarity: "SR 길",
-        color: "라벤더 퍼플",
-        emoji: "🌿",
-        title: "공간의 기운이 바뀌며 좋은 소식이 들리는 날",
-        desc: "기분 전환이 곧 행운으로 이어집니다. 호텔 로비 같은 은은한 향기로 집안 공기를 바꿔보세요.",
-        item: "부티크 호텔 시그니처 실내 디퓨저",
-        price: "16,900원",
-        discountRate: "22%",
-        isTodayDeal: true,
-        keyword: "호텔 디퓨저",
-        ohouseUrl: "",
-        productImage: ""
-      },
-      {
-        id: "mini_tray",
-        rarity: "R 소길",
-        color: "내추럴 우드",
-        emoji: "🪵",
-        title: "소소한 정리가 뜻밖의 행운을 부르는 날",
-        desc: "자주 쓰는 물건에 제자리를 만들어 주면 하루의 흐름이 매끄러워집니다. 작은 소품 하나로 분위기를 바꿔보세요.",
-        item: "원목 & 스테인리스 오브제 악세사리 트레이",
-        price: "13,500원",
-        discountRate: "17%",
-        isTodayDeal: false,
-        keyword: "원목 오브제 트레이",
-        ohouseUrl: "",
-        productImage: ""
-      },
-      {
-        id: "keychain",
-        rarity: "SSR 대길",
-        color: "골드 실버",
-        emoji: "🍀",
-        title: "작은 부적처럼 행운이 하루 종일 따라다니는 날",
-        desc: "이동하는 곳마다 타이밍이 딱딱 맞아떨어집니다. 가방이나 차키에 작은 포인트를 더해 행운을 고정해 보세요.",
-        item: "네잎클로버 행운 황동 메탈 키링",
-        price: "11,900원",
-        discountRate: "20%",
-        isTodayDeal: false,
-        keyword: "네잎클로버 키링",
-        ohouseUrl: "",
+        keyword: "로코 전면 아기 책장 교구장",
+        ohouseUrl: "https://ozip.me/OOAziq3?af",
         productImage: ""
       }
     ];
 
-    const DEX_STORAGE_KEY = "lucky_gacha_ohouse_dex_v1";
-    const ADMIN_STORAGE_KEY = "lucky_gacha_ohouse_admin_v1";
+    const DEX_STORAGE_KEY = "lucky_gacha_ohouse_dex_v2";
+    const ADMIN_STORAGE_KEY = "lucky_gacha_ohouse_admin_v2";
 
     let unlockedIds = JSON.parse(localStorage.getItem(DEX_STORAGE_KEY) || "[]");
     let adminOverrides = JSON.parse(localStorage.getItem(ADMIN_STORAGE_KEY) || "null");
@@ -995,7 +989,6 @@
       return (MY_OHOUSE_CONFIG.curatorId || "").trim();
     }
 
-    // 4단계 우선순위 수익화 URL 생성기
     function buildMonetizedUrl(fortune) {
       const adminItem = adminOverrides && adminOverrides.items && adminOverrides.items[fortune.id];
       const liveItem = liveJsonItems && liveJsonItems[fortune.id];
@@ -1008,7 +1001,6 @@
         (fortune.ohouseUrl && fortune.ohouseUrl.trim()) ||
         "https://ohou.se/productions/feed?query=" + encodeURIComponent(fortune.keyword);
 
-      // ozip.me 큐레이터 단축 링크는 파라미터 변형 없이 그대로 반환
       if (rawUrl.includes("ozip.me")) {
         return rawUrl;
       }
@@ -1062,7 +1054,7 @@
           }
         }
       } catch (err) {
-        console.warn("기본 홈리빙 추천 데이터를 사용합니다:", err);
+        console.warn("내장된 큐레이터 추천 데이터를 사용합니다:", err);
       }
     }
 
@@ -1166,9 +1158,6 @@
       setTimeout(() => toast.classList.remove("show"), 2200);
     }
 
-    // =========================================================================
-    // 숨김 큐레이터 관리자 모달 로직
-    // =========================================================================
     function openAdminModal() {
       document.getElementById("adminCuratorId").value = getActiveCuratorId();
       const container = document.getElementById("adminItemsContainer");
@@ -1178,7 +1167,7 @@
         const resolved = getResolvedFortune(baseItem);
         const saved = (adminOverrides && adminOverrides.items && adminOverrides.items[baseItem.id]) ||
                       liveJsonItems[baseItem.id] || {};
-        const currentLink = saved.ohouseUrl || (MY_OHOUSE_CONFIG.customLinks[baseItem.id] || "");
+        const currentLink = saved.ohouseUrl || (MY_OHOUSE_CONFIG.customLinks[baseItem.id] || baseItem.ohouseUrl || "");
 
         const card = document.createElement("div");
         card.className = "admin-item-card";
@@ -1193,11 +1182,11 @@
             <input class="form-input" data-field="productName" data-id="${baseItem.id}" type="text"
               placeholder="상품명" value="${resolved.item}" />
             <input class="form-input" data-field="productPrice" data-id="${baseItem.id}" type="text"
-              placeholder="가격 (예: 18,900원)" value="${resolved.price}" />
+              placeholder="가격 (예: 99,000원)" value="${resolved.price}" />
           </div>
           <div class="admin-grid-2">
             <input class="form-input" data-field="discountRate" data-id="${baseItem.id}" type="text"
-              placeholder="할인율 (예: 24%)" value="${resolved.discountRate || ""}" />
+              placeholder="할인율 (예: 37%)" value="${resolved.discountRate || ""}" />
             <input class="form-input" data-field="productImage" data-id="${baseItem.id}" type="url"
               placeholder="썸네일 이미지 URL (선택)" value="${resolved.productImage || ""}" />
           </div>
@@ -1222,7 +1211,7 @@
           discountRate: getVal("discountRate"),
           isTodayDeal: baseItem.isTodayDeal,
           productImage: getVal("productImage"),
-          ohouseUrl: getVal("ohouseUrl")
+          ohouseUrl: getVal("ohouseUrl") || baseItem.ohouseUrl
         };
       });
       return {
@@ -1273,7 +1262,6 @@
       document.getElementById("adminModal").style.display = "none";
     });
 
-    // 로고 3회 연속 탭으로 관리자 창 열기
     let logoTapCount = 0;
     let logoTapTimer = null;
     document.getElementById("secretLogoTrigger").addEventListener("click", () => {
@@ -1289,7 +1277,6 @@
       }, 700);
     });
 
-    // 단축키 Ctrl+Shift+O 또는 Cmd+Shift+O
     document.addEventListener("keydown", (e) => {
       if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === "o") {
         e.preventDefault();
@@ -1297,9 +1284,6 @@
       }
     });
 
-    // =========================================================================
-    // 기본 가챠 뽑기 및 도감 이벤트
-    // =========================================================================
     drawBtn.addEventListener("click", () => {
       drawBtn.disabled = true;
       playGachaSound();
@@ -1372,7 +1356,6 @@
       showToast("도감이 초기화되었습니다.");
     });
 
-    // 초기화 실행
     updateDexCount();
     loadOhouseProducts().then(() => {
       if (new URLSearchParams(window.location.search).get("admin") === "1") {
